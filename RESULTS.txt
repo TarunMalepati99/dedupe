@@ -1,0 +1,26 @@
+dev pairs=507 test pairs=507  (documents are disjoint between splits)
+baseline threshold chosen on dev: 0.3;  improved (t_j,t_c,min_ratio) chosen on dev: (0.4, 0.7, 0.5)
+
+=== HELD-OUT TEST ===
+baseline raw Jaccard @0.5                    P=0.728 R=0.775 F1=0.751  (tp=179 fp=67 fn=52)
+baseline raw Jaccard @0.3 (dev-tuned)        P=0.762 R=0.983 F1=0.858  (tp=227 fp=71 fn=4)
+improved (boilerplate-stripped, dev-tuned)   P=1.000 R=1.000 F1=1.000  (tp=231 fp=0 fn=0)
+
+per-kind accuracy on test:
+kind                            baseline@0.5 (naive default)                baseline@dev-tuned                          improved
+diff:cross_template                                    43/43                             43/43                             43/43
+diff:licence_versions                                  18/18                             18/18                             18/18
+diff:same_template                                     86/86                             86/86                             86/86
+diff:thin_cross_template                               43/43                             43/43                             43/43
+diff:thin_same_template                                19/86                             15/86                             86/86
+same:light_edit                                        42/47                             47/47                             47/47
+same:syndicated                                        47/47                             47/47                             47/47
+same:thin_syndicated                                    0/43                             39/43                             43/43
+same:truncated_mirror                                  43/47                             47/47                             47/47
+same:volatile_only                                     47/47                             47/47                             47/47
+
+=== TEST ERRORS of improved system ===
+
+boilerplate lines learned per host: {'A': 44, 'C': 38, 'B': 35}
+test pages=873  all pairs=380628  LSH candidate pairs=4320 (1.13% of all pairs)
+labelled duplicate pairs recalled by LSH: 223/231 (96.5%)
